@@ -1,0 +1,21 @@
+/* CSS declarations go here */
+
+html, body {
+    background-color: cadetblue;
+    height: calc(100% - 45px);
+}
+
+
+.mainLayout {
+
+    background-color: white;
+    min-height: calc(100% - 0px);
+    margin-top: 75px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 15px;
+
+
+}
