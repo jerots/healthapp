@@ -2,48 +2,44 @@ import './main.html';
 
 BlazeLayout.setRoot('body');
 
-function setActive(active){
-    $('.nav li').removeClass('active');
-    active.addClass('active');
+function collapseNavBar() {
+    $('#navbar-collapse').collapse("hide");
 }
+
+FlowRouter.triggers.enter([collapseNavBar]);
 
 
 FlowRouter.route('/appointment/', {
+    name: 'appointment',
     action: function () {
         BlazeLayout.render("mainLayout", {content: "appointment"});
-        $('#navbar-collapse').collapse("hide");
-        setActive($('#nav-appointment'));
     }
 });
 
 FlowRouter.route('/', {
+    name: 'appointment',
     action: function () {
         BlazeLayout.render("mainLayout", {content: "appointment"});
-        $('#navbar-collapse').collapse("hide");
-        setActive($('#nav-appointment'));
     }
 });
 
 FlowRouter.route('/calendar/', {
+    name: 'calendar',
     action: function () {
         BlazeLayout.render("mainLayout", {content: "calendar"});
-        $('#navbar-collapse').collapse("hide");
-        setActive($('#nav-calendar'));
     }
 });
 
 FlowRouter.route('/report/', {
+    name: 'report',
     action: function () {
         BlazeLayout.render("mainLayout", {content: "report"});
-        $('#navbar-collapse').collapse("hide");
-        setActive($('#nav-report'));
     }
 });
 
 FlowRouter.route('/info/', {
+    name: 'info',
     action: function () {
         BlazeLayout.render("mainLayout", {content: "info"});
-        $('#navbar-collapse').collapse("hide");
-        setActive($('#nav-info'));
     }
 });
