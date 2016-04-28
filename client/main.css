@@ -1,7 +1,8 @@
 /* CSS declarations go here */
 
 html, body {
-    background-color: cadetblue;
+    /*background-color: cadetblue;*/
+    background-color: lightseagreen;
     height: calc(100% - 45px);
 }
 
