@@ -44,7 +44,7 @@ FlowRouter.route('/info/', {
     }
 });
 
-Template.newAppointment.events({
+Template.appointment.events({
       'submit form': function( event ){   // also tried just 'submit', both work for me!
         console.log( 'Submitting form!' );
         event.preventDefault();
