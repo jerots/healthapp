@@ -43,3 +43,12 @@ FlowRouter.route('/info/', {
         BlazeLayout.render("mainLayout", {content: "info"});
     }
 });
+
+Template.newAppointment.events({
+      'submit form': function( event ){   // also tried just 'submit', both work for me!
+        console.log( 'Submitting form!' );
+        event.preventDefault();
+        event.stopPropagation();
+        return false; 
+      }
+    });
