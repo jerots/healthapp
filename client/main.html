@@ -71,17 +71,47 @@
                         <th> Parties involved </th>
                         <th> Place </th>
                     </tr>
-                    <tr>
-                        <td> 15/6/16</td>
-                        <td> Physiotherapy</td>
-                        <td> Dr Susan </td>
-                        <td> SGH </td>
-                    </tr> 
+                    <tr> 
+                        {{>Appointments}}
+                    </tr>
                 </table>
             </div>
         </div>
     </div>
 </template>
+
+<template name ="Appointments">
+    <td>
+        <ul style="list-style-type: none; padding: 0">
+            {{#each lists}}
+                <li>{{Date}}</li>
+            {{/each}}
+        </ul>
+    </td>
+    <td> 
+        <ul style="list-style-type: none; padding: 0">
+            {{#each lists}}
+                <li>{{AppointmentType}} </li>
+            {{/each}}
+        </ul>
+    </td>
+
+    <td> 
+        <ul style="list-style-type: none; padding: 0">
+            {{#each lists}}
+                <li>{{PartiesInvolved}} </li>
+            {{/each}}
+        </ul>
+    </td>
+
+    <td> 
+        <ul style="list-style-type: none; padding: 0">
+            {{#each lists}}
+                <li>{{Place}} </li>
+            {{/each}}
+        </ul>
+    </td>
+</template> 
 
 <template name="calendar">
     <div class="content-container">
@@ -94,6 +124,7 @@
         </div>
     </div>
 </template>
+
 <template name="report">
     <div class="content-container">
         <div class="row">
@@ -103,6 +134,7 @@
         </div>
     </div>
 </template>
+
 <template name="info">
     <div class="row">
         <div class="col-md-6">

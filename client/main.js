@@ -44,11 +44,10 @@ FlowRouter.route('/info/', {
     }
 });
 
-Template.appointment.events({
-    'submit form': function (event) {   // also tried just 'submit', both work for me!
-        console.log('Submitting form!');
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
-    }
-});
+AppointmentList = new Mongo.Collection('appointment');
+
+
+Template.Appointments.lists = function() {
+    return AppointmentList.find();
+    // return lists.find({}); // Works just the same
+}
