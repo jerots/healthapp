@@ -56,13 +56,27 @@
     <div class="content-container">
         <div class="row">
             <div class="col-md-12">
-            <form class="newAppointment">
-                    Date: <input type="text" name="date"> 
-                    Appointment type: <input type="text" name="apptType">
-                    Parties involved: <input type="text" name="partiesInvovled">
-                    Place: <input type="text" name="place">
+                <!--{{#with newAppointment}}-->
+                <form>
+                    <div>
+                        <label>Date: </label>
+                        <input type="text" id="date" value="{{Date}}"/> 
+                    </div>
+                    <div>
+                        <label>Appointment type: </label>
+                        <input type="text" id="apptType" value="{{AppoinmentType}}" >
+                    </div>
+                    <div>
+                        <label>Parties involved: </label>
+                        <input type="text" id="partiesInvolved" value="{{PartiesInvolved}}">
+                    </div>
+                    <div>
+                        <label>Place: </label>
+                        <input type="text" id="place" value="{{Place}}">
+                    </div>
+                    <input type="submit" value="Submit">                
                 </form>
-                <button name="newAppointment" type="submit" form="newAppointment" value="Submit"> + </button>
+                <!--{{/with}}-->
                 <h1> See your appointments here</h1>
                 <table class="table">
                     <tr> 
