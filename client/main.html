@@ -60,7 +60,8 @@
                 <form>
                     <div>
                         <label>Date: </label>
-                        <input type="text" id="date" value="{{Date}}"/> 
+                        <!--<input type="text" id="date" value="{{Date}}"/> -->
+                        <!--{{>dpReplacement}}-->
                     </div>
                     <div>
                         <label>Appointment type: </label>
@@ -91,6 +92,15 @@
                 </table>
             </div>
         </div>
+    </div>
+</template>
+
+<template name="dpReplacement">
+    <div class='input-group date'>
+        <input type="text" value="" {{atts}}/>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
     </div>
 </template>
 

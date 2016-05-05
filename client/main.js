@@ -74,30 +74,7 @@ Template.appointment.events = {
   }
 };
 
-/*emplate.appointment.events={
-  'click input[type=submit]': function (event){
-    // Prevent default browser form submit
-    event.preventDefault();
- 
-    // Get value from form element
-    const target = event.target;
-    var date = target.date.value;
-    var apptType = target.apptType.value;
-    var partiesInvolved = target.partiesInvolved.value;
-    var place = target.place.value;
- 
-    // Insert a task into the collection
-    AppointmentList.insert({
-      Date: date, AppointmentType: apptType, PartiesInvolved: partiesInvolved, Place: place
-    });
- 
-    // Clear form
-    target.date.value = '';
-    target.apptType.value = '';
-    target.partiesInvolved.value = '';
-    target.place.value = '';
-  },
-};*/
+Template.dpReplacement.replaces("afBootstrapDatepicker");
 
 Template.Appointments.lists = function() {
     return AppointmentList.find();
