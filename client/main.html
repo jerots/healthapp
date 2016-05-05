@@ -56,28 +56,26 @@
     <div class="content-container">
         <div class="row">
             <div class="col-md-12">
-                <!--{{#with newAppointment}}-->
-                <form>
+                <form class="newAppointment">
                     <div>
                         <label>Date: </label>
-                        <!--<input type="text" id="date" value="{{Date}}"/> -->
+                        <input type="text" name="date" value="{{Date}}"/>
                         <!--{{>dpReplacement}}-->
                     </div>
                     <div>
                         <label>Appointment type: </label>
-                        <input type="text" id="apptType" value="{{AppoinmentType}}" >
+                        <input type="text" name="apptType" value="{{AppoinmentType}}" >
                     </div>
                     <div>
                         <label>Parties involved: </label>
-                        <input type="text" id="partiesInvolved" value="{{PartiesInvolved}}">
+                        <input type="text" name="partiesInvolved" value="{{PartiesInvolved}}">
                     </div>
                     <div>
                         <label>Place: </label>
-                        <input type="text" id="place" value="{{Place}}">
+                        <input type="text" name="place" value="{{Place}}">
                     </div>
                     <input type="submit" value="Submit">                
                 </form>
-                <!--{{/with}}-->
                 <h1> See your appointments here</h1>
                 <table class="table">
                     <tr> 
@@ -85,6 +83,7 @@
                         <th> Appointment type </th>
                         <th> Parties involved </th>
                         <th> Place </th>
+                        <th> Actions</th>
                     </tr>
                     <tr> 
                         {{>Appointments}}
@@ -109,7 +108,7 @@
         <ul style="list-style-type: none; padding: 0">
             {{#each lists}}
                 <li>{{Date}}</li>
-            {{/each}}
+           {{/each}}
         </ul>
     </td>
     <td> 
@@ -133,6 +132,13 @@
             {{#each lists}}
                 <li>{{Place}} </li>
             {{/each}}
+        </ul>
+    </td>
+    <td>
+        <ul style="list-style-type: none; padding: 0">
+            {{#each lists}}
+                <li><button class="delete">Remove</button> </li>
+           {{/each}}
         </ul>
     </td>
 </template> 

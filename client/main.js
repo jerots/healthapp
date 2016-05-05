@@ -52,29 +52,34 @@ Template.appointment.helpers({
   }
 });
 
+Template.appointment.events ({
+    'submit .newAppointment': function(event){
+        var date = event.target.date.value;
+        var apptType = event.target.apptType.value;
+        var partiesInvolved = event.target.partiesInvolved.value;
+        var place = event.target.place.value;
 
-Template.appointment.events = {
-  'click input[type=submit]': function(e) {
-    e.preventDefault();
+        AppointmentList.insert({
+            Date: date, 
+            AppointmentType: apptType,
+            PartiesInvolved: partiesInvolved,
+            Place: place,
+        });
+        event.target.date.value="";
+        event.target.apptType.value="";
+        event.target.partiesInvolved.value="";
+        event.target.place.value="";
 
-    var selectedApptId = Session.get('selectedApptId');
-    var newAppointment = AppointmentList.findOne(selectedPostId);
+        return false;
+    }
+});
 
-    
-    var properties = {
-        Date: $('#date').val(),
-        AppointmentType: $('#apptType').val(),
-        PartiesInvolved: $('#partiesInvolved').val(),
-        Place: $('#place').val(),
-    };
-    AppointmentList.update(selectedApptId, {$set: properties});
-    },
-  'click .delete-link': function(e) {
-    // do something when the users clicks .delete-link
-  }
-};
-
-Template.dpReplacement.replaces("afBootstrapDatepicker");
+//Template.dpReplacement.replaces("afBootstrapDatepicker");
+Template.Appointments.events({
+    'click .delete' function() {
+        AppointmentList.delete();
+    }
+});
 
 Template.Appointments.lists = function() {
     return AppointmentList.find();
