@@ -108,21 +108,21 @@
      <td>
         <ul style="list-style-type: none; padding: 0">
             {{#each lists}}
-                <li><input type="checkbox" class="toggleChecked" checked="{{checked}}"></li>
+                <li><input type="checkbox" class="done" checked="{{checked}}"></li>
            {{/each}}
         </ul>
     </td>
     <td>
         <ul style="list-style-type: none; padding: 0">
             {{#each lists}}
-                <li>{{Date}}</li>
+                <li><span>{{Date}} </span></li>
            {{/each}}
         </ul>
     </td>
     <td> 
         <ul style="list-style-type: none; padding: 0">
             {{#each lists}}
-                <li>{{AppointmentType}} </li>
+                <li><span>{{AppointmentType}} </span></li>
             {{/each}}
         </ul>
     </td>
