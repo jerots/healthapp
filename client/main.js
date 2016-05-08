@@ -77,11 +77,14 @@ Template.appointment.events ({
 //Template.dpReplacement.replaces("afBootstrapDatepicker");
 
 //Template for remove button but it is not working
-/*Template.Appointments.events({
-    'click .delete' function() {
+Template.Appointments.events({
+    'click .done': function() {
+        AppointmentList.update(this._id, {$set: {checked: !this.checked}});
+    },
+    'click .delete': function() {
         AppointmentList.remove(this._id);
     }
-});*/
+});
 
 Template.Appointments.lists = function() {
     return AppointmentList.find();
