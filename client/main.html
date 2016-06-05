@@ -53,45 +53,95 @@
 
 
 <template name="appointment">
-    <div class="content-container">
-        <div class="row">
-            <div class="col-md-12">
-                <form class="newAppointment">
-                    <div>
-                        <label>Date: </label>
-                        <input type="text" name="date" value="{{Date}}"/>
-                        <!--{{>dpReplacement}}-->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form id="newAppointment">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">New Appointment</h4>
                     </div>
-                    <div>
-                        <label>Appointment type: </label>
-                        <input type="text" name="apptType" value="{{AppoinmentType}}" >
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class='col-sm-6'>
+                                                <label>Date: </label>
+                                                <input type="date" class="form-control" name="date" required/>
+                                            </div>
+                                            <div class='col-sm-6'>
+                                                <label>Time: </label>
+                                                <input type="time" class="form-control" name="time" required/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--{{>dpReplacement}}-->
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label>Appointment type: </label>
+                                        <input type="text" class="form-control" name="apptType" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label>Parties involved: </label>
+                                        <input type="text" class="form-control" name="partiesInvolved" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label>Place: </label>
+                                        <input type="text" class="form-control" name="place" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label>Parties involved: </label>
-                        <input type="text" name="partiesInvolved" value="{{PartiesInvolved}}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Submit" />
                     </div>
-                    <div>
-                        <label>Place: </label>
-                        <input type="text" name="place" value="{{Place}}">
-                    </div>
-                    <input type="submit" value="Submit">                
-                </form>
-                <h1> See your appointments here</h1>
-                <table class="table">
-                    <tr> 
-                        <th> </th>
-                        <th> Date </th>
-                        <th> Appointment type </th>
-                        <th> Parties involved </th>
-                        <th> Place </th>
-                        <th> </th>
-                    </tr>
-                    <tr> 
-                        {{>Appointments}}
-                    </tr>
-                </table>
-            </div>
+                </div>
+            </form>
+
         </div>
+    </div>
+    <div class="content-container">
+
+        <h1>Appointments
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                    style="float:right">
+                New Appointment
+            </button>
+        </h1>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th> Date</th>
+                <th> Appointment type</th>
+                <th> Parties involved</th>
+                <th> Place</th>
+                <th></th>
+            </tr>
+            {{#each appointments}}
+                <tr>
+                    <td>{{showIndex @index}}</td>
+                    <td>{{date}}</td>
+                    <td>{{type}}</td>
+                    <td>{{parties}}</td>
+                    <td>{{place}}</td>
+                </tr>
+            {{/each}}
+        </table>
+
+
     </div>
 </template>
 
@@ -104,52 +154,6 @@
     </div>
 </template>
 
-<template name ="Appointments">
-     <td>
-        <ul style="list-style-type: none; padding: 0">
-            {{#each lists}}
-                <li><input type="checkbox" class="done" checked="{{checked}}"></li>
-           {{/each}}
-        </ul>
-    </td>
-    <td>
-        <ul style="list-style-type: none; padding: 0">
-            {{#each lists}}
-                <li><span>{{Date}} </span></li>
-           {{/each}}
-        </ul>
-    </td>
-    <td> 
-        <ul style="list-style-type: none; padding: 0">
-            {{#each lists}}
-                <li><span>{{AppointmentType}} </span></li>
-            {{/each}}
-        </ul>
-    </td>
-
-    <td> 
-        <ul style="list-style-type: none; padding: 0">
-            {{#each lists}}
-                <li>{{PartiesInvolved}} </li>
-            {{/each}}
-        </ul>
-    </td>
-
-    <td> 
-        <ul style="list-style-type: none; padding: 0">
-            {{#each lists}}
-                <li>{{Place}} </li>
-            {{/each}}
-        </ul>
-    </td>
-    <td>
-        <ul style="list-style-type: none; padding: 0">
-            {{#each lists}}
-                <li><button class="delete">Remove</button> </li>
-           {{/each}}
-        </ul>
-    </td>
-</template> 
 
 <template name="calendar">
     <div class="content-container">
@@ -180,18 +184,22 @@
 
                 <h1>HealthApp</h1>
                 <h5>
-                    <p>HealthApp is a telehealth application that allows doctors to communicate virtually with patients.
+                    <p>HealthApp is a telehealth application that allows doctors to communicate virtually with
+                        patients.
                         This opens
-                        up the possibility of patients consulting doctors beyond just their immediate geographical reach
+                        up the possibility of patients consulting doctors beyond just their immediate geographical
+                        reach
                         and
                         likewise for the doctors.</p>
 
                     <p>HealthApp is convenient for both patients and doctors because of its IoT features. Selected
                         wearables or
-                        health monitoring devices can be linked to HealthApp, recording the essential data for doctors'
+                        health monitoring devices can be linked to HealthApp, recording the essential data for
+                        doctors'
                         reference.
                         These are all done with only a need for one time configuration on the patient's side.</p>
-                    <p>After enjoying the complete suite of facilities, payments are made simple with payment facility
+                    <p>After enjoying the complete suite of facilities, payments are made simple with payment
+                        facility
                         provided by
                         HealthApp.</p>
                 </h5>

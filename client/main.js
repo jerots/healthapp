@@ -6,6 +6,8 @@ function collapseNavBar() {
     $('#navbar-collapse').collapse("hide");
 }
 
+
+//ROUTES
 FlowRouter.triggers.enter([collapseNavBar]);
 
 
@@ -44,49 +46,64 @@ FlowRouter.route('/info/', {
     }
 });
 
-AppointmentList = new Mongo.Collection('appointment');
 
+//Initialise db
+Appointments = new Mongo.Collection('appointments');
+
+//Hard coded data
+// Appointments.insert({date: 'aaa', type: 'b', parties: 'c', place: 'd'});
+
+
+// HELPERS
 Template.appointment.helpers({
-  newAppointment: function() {
-    return AppointmentList.findOne(Session.get('selectedApptId'));
-  }
+    appointments: function () {
+        return Appointments.find();
+    },
+    showIndex: function(index){
+      return index + 1;
+
+    }
+
+
 });
 
-Template.appointment.events ({
-    'submit .newAppointment': function(event){
+
+//EVENTS
+Template.appointment.events({
+    'submit #newAppointment': function (event) {
+
+        event.preventDefault();
+
         var date = event.target.date.value;
+        var time = event.target.time.value;
         var apptType = event.target.apptType.value;
         var partiesInvolved = event.target.partiesInvolved.value;
         var place = event.target.place.value;
 
-        AppointmentList.insert({
-            Date: date, 
-            AppointmentType: apptType,
-            PartiesInvolved: partiesInvolved,
-            Place: place,
-        });
-        event.target.date.value="";
-        event.target.apptType.value="";
-        event.target.partiesInvolved.value="";
-        event.target.place.value="";
+        var result = {
+            'date': date,
+            'type': apptType,
+            'parties': partiesInvolved,
+            'place': place
+        };
 
-        return false;
+        console.log(result);
+        Appointments.insert(result);
+        event.target.date.value = "";
+        event.target.apptType.value = "";
+        event.target.partiesInvolved.value = "";
+        event.target.place.value = "";
+
+        return true;
+    },
+    //Template for remove button but it is not working
+    'click .done': function () {
+        Appointments.update(this._id, {$set: {checked: !this.checked}});
+    },
+    'click .delete': function () {
+        Appointments.remove(this._id);
     }
 });
 
 //Template.dpReplacement.replaces("afBootstrapDatepicker");
 
-//Template for remove button but it is not working
-Template.Appointments.events({
-    'click .done': function() {
-        AppointmentList.update(this._id, {$set: {checked: !this.checked}});
-    },
-    'click .delete': function() {
-        AppointmentList.remove(this._id);
-    }
-});
-
-Template.Appointments.lists = function() {
-    return AppointmentList.find();
-    // return lists.find({}); // Works just the same
-}
