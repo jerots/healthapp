@@ -63,8 +63,6 @@ Template.appointment.helpers({
       return index + 1;
 
     }
-
-
 });
 
 
@@ -88,11 +86,17 @@ Template.appointment.events({
         };
 
         console.log(result);
-        Appointments.insert(result);
-        event.target.date.value = "";
-        event.target.apptType.value = "";
-        event.target.partiesInvolved.value = "";
-        event.target.place.value = "";
+        var success = Appointments.insert(result);
+
+        $('#myModal').modal('hide');
+        //commented for development environment
+        // if (success){
+        //     event.target.date.value = "";
+        //     event.target.apptType.value = "";
+        //     event.target.partiesInvolved.value = "";
+        //     event.target.place.value = "";
+        // }
+
 
         return true;
     },
