@@ -80,6 +80,7 @@ Template.appointment.events({
 
         var result = {
             'date': date,
+            'time' : time,
             'type': apptType,
             'parties': partiesInvolved,
             'place': place
@@ -92,6 +93,7 @@ Template.appointment.events({
         //commented for development environment
         // if (success){
         //     event.target.date.value = "";
+        //      event.target.time.value = '';
         //     event.target.apptType.value = "";
         //     event.target.partiesInvolved.value = "";
         //     event.target.place.value = "";
